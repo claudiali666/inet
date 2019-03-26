@@ -29,7 +29,7 @@ module CompoundPendingQueue extends CompoundQueue
     submodules:
         classifier: PacketClassifier {
             parameters:
-                classifierClass = default("MgmtOverDataClassifier"); // MgmtOverDataClassifier, MgmtOverMulticastOverUnicastClassifier, ...
+                classifierClass = default("inet::ieee80211::MgmtOverDataClassifier"); // MgmtOverDataClassifier, MgmtOverMulticastOverUnicastClassifier, ...
                 @display("p=100,200");
         }
         managementQueue: PacketQueue {

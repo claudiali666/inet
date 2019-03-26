@@ -22,7 +22,7 @@ import inet.common.newqueue.DropTailQueue;
 simple PendingQueue extends DropTailQueue
 {
     parameters:
-        comparatorClass = default("MgmtOverDataComparator"); // MgmtOverDataComparator, MgmtOverMulticastOverUnicastComparator, ...
+        comparatorClass = default("inet::ieee80211::MgmtOverDataComparator"); // MgmtOverDataComparator, MgmtOverMulticastOverUnicastComparator, ...
         frameCapacity = default(100);
 }
 

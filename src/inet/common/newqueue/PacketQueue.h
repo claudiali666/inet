@@ -49,7 +49,7 @@ class INET_API PacketQueue : public PacketQueueBase, public IPacketBuffer::IList
     virtual bool isOverloaded();
 
   public:
-    virtual ~PacketQueue() { delete packetComparatorFunction; }
+    virtual ~PacketQueue() { delete packetDropperFunction; }
 
     virtual int getMaxNumPackets() override { return frameCapacity; }
     virtual b getMaxTotalLength() override { return byteCapacity == -1 ? b(-1) : b(B(byteCapacity)); }
