@@ -84,7 +84,7 @@ module BMac extends MacProtocolBase like IMacProtocol
         @statistic[packetDropNotAddressedToUs](title="packet drop: not addressed to us"; source=packetDropReasonIsNotAddressedToUs(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
         @statistic[packetDropQueueOverlow](title="packet drop: queue overflow"; source=packetDropReasonIsQueueOverflow(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
     submodules:
-        queue: <default("DropTailQueue")> like IPacketQueue if typename != "" {
+        queue: <default("DropTailQueue")> like IPacketQueue {
             parameters:
                 frameCapacity = default(queueLength);
                 @display("p=100,100;q=l2queue");
