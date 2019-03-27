@@ -150,15 +150,12 @@ void AckingMac::startTransmitting(Packet *msg)
 
 void AckingMac::handleUpperPacket(Packet *packet)
 {
-    if (radio->getTransmissionState() == IRadio::TRANSMISSION_STATE_TRANSMITTING) {
-        // Logic error: we do not request packet from the external queue when radio is transmitting
-        throw cRuntimeError("Received msg for transmission but transmitter is busy");
-    }
-    else {
+    EV << "Received " << packet << " for transmission\n";
+    if (lastSentPk || radio->getTransmissionState() == IRadio::TRANSMISSION_STATE_TRANSMITTING)
+        queue->pushPacket(packet);
+    else
         // We are idle, so we can start transmitting right away.
-        EV << "Received " << packet << " for transmission\n";
         startTransmitting(packet);
-    }
 }
 
 void AckingMac::handleLowerPacket(Packet *packet)
