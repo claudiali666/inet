@@ -103,7 +103,7 @@ module Ieee802154Mac extends MacProtocolBase like IMacProtocol
         @statistic[packetDropRetryLimitReached](title="packet drop: retry limit reached"; source=packetDropReasonIsRetryLimitReached(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
         @statistic[packetDropBackoffLimitReached](title="packet drop: backoff limit reached"; source=packetDropReasonIsCongestion(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
     submodules:
-        queue: <default("DropTailQueue")> like IPacketQueue if typename != "" {
+        queue: <default("DropTailQueue")> like IPacketQueue {
             parameters:
                 frameCapacity = default(queueLength);
                 @display("p=100,100;q=l2queue");
