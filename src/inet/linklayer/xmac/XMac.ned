@@ -77,7 +77,7 @@ module XMac extends MacProtocolBase like IMacProtocol
         @class(XMac);
         @signal[packetDropped](type=inet::Packet);
     submodules:
-        queue: <default("DropTailQueue")> like IPacketQueue if typename != "" {
+        queue: <default("DropTailQueue")> like IPacketQueue {
             parameters:
                 frameCapacity = default(queueLength);
                 @display("p=100,100;q=l2queue");
