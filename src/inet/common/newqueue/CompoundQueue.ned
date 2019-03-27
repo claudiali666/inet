@@ -24,7 +24,7 @@ module CompoundQueue extends PacketQueueBase like IPacketQueue
 {
     parameters:
         int frameCapacity = default(-1);
-        int byteCapacity = default(-1);
+        int dataCapacity = default(-1);
         string displayStringTextFormat = default("%p packets");
         @class(CompoundQueue);
         @signal[packetDropped](type=inet::Packet);

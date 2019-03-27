@@ -31,7 +31,7 @@ class INET_API ThresholdDropper : public MultiPacketFilterBase
 {
   protected:
     int frameCapacity = -1;
-    B byteCapacity = B(-1);
+    B dataCapacity = B(-1);
 
   protected:
     virtual void initialize(int stage) override;

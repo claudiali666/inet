@@ -24,7 +24,7 @@ simple PacketQueue extends PacketQueueBase like IPacketQueue
 {
     parameters:
         int frameCapacity = default(-1); // maximum number of packets in the queue, no limit by default
-        int byteCapacity = default(-1); // maximum total length of packets in the queue, no limit by default
+        int dataCapacity = default(-1); // maximum total length of packets in the queue, no limit by default
         bool enableDropping = default(true); // true means packets are dropped when the queue is overloaded
         string dropperClass @enum("dropHead", "dropTail") = default(""); // determines which packets are dropped when the queue is overloaded, undefined by default; the parameter must be the name of a C++ class which implements the IPacketDropper C++ interface and is registered via Register_Class
         string comparatorClass = default(""); // determines the order of packets in the queue, insertion order by default; the parameter must be the name of a C++ class which implements the IPacketComparator C++ interface and is registered via Register_Class

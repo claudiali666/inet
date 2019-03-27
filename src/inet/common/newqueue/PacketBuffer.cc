@@ -29,14 +29,14 @@ void PacketBuffer::initialize(int stage)
     if (stage == INITSTAGE_LOCAL) {
         displayStringTextFormat = par("displayStringTextFormat");
         frameCapacity = par("frameCapacity");
-        byteCapacity = par("byteCapacity");
+        dataCapacity = par("dataCapacity");
     }
 }
 
 bool PacketBuffer::canAddPacket(Packet *packet)
 {
     return (frameCapacity == -1 || (int)packets.size() + 1 <= frameCapacity) &&
-           (byteCapacity == -1 || totalLength + packet->getTotalLength() <= B(byteCapacity));
+           (dataCapacity == -1 || totalLength + packet->getTotalLength() <= B(dataCapacity));
 }
 
 void PacketBuffer::addPacket(IListener *listener, Packet *packet)

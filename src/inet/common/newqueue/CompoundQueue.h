@@ -30,7 +30,7 @@ class INET_API CompoundQueue : public PacketQueueBase
 {
   protected:
     int frameCapacity = -1;
-    int byteCapacity = -1;
+    int dataCapacity = -1;
     const char *displayStringTextFormat = nullptr;
     cGate *inputGate = nullptr;
     cGate *outputGate = nullptr;
@@ -45,7 +45,7 @@ class INET_API CompoundQueue : public PacketQueueBase
 
   public:
     virtual int getMaxNumPackets() override { return frameCapacity; }
-    virtual b getMaxTotalLength() override { return B(byteCapacity); }
+    virtual b getMaxTotalLength() override { return B(dataCapacity); }
 
     virtual bool isEmpty() override { return outputCollection->isEmpty(); }
     virtual int getNumPackets() override;

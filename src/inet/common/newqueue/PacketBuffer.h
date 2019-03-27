@@ -31,7 +31,7 @@ class INET_API PacketBuffer : public cSimpleModule, public IPacketBuffer
 
     const char *displayStringTextFormat = nullptr;
     int frameCapacity = -1;
-    int byteCapacity = -1;
+    int dataCapacity = -1;
 
     b totalLength = b(0);
     std::vector<std::pair<IListener *, Packet *>> packets;
