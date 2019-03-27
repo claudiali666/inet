@@ -55,7 +55,7 @@ void PacketQueue::initialize(int stage)
         if ((frameCapacity != -1 || dataCapacity != b(-1)) && enableDropping && packetDropperFunction == nullptr)
             throw cRuntimeError("Packet dropper is not specified");
         updateDisplayString();
-        scheduleAt(0, new cMessage("StartConsuming"));
+        scheduleAt(simTime(), new cMessage("StartConsuming"));
     }
     else if (stage == INITSTAGE_LAST) {
         checkPushPacketSupport(inputGate);

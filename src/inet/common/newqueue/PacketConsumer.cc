@@ -28,7 +28,7 @@ void PacketConsumer::initialize(int stage)
 {
     if (stage == INITSTAGE_LOCAL) {
         inputGate = gate("in");
-        scheduleAt(0, new cMessage("StartConsuming"));
+        scheduleAt(simTime(), new cMessage("StartConsuming"));
         WATCH(numPacket);
         WATCH(totalLength);
     }
