@@ -76,7 +76,7 @@ module Ppp
         output upperLayerOut;
         inout phys @labels(PppFrame);
     submodules:
-        queue: <default("DropTailQueue")> like IPacketQueue if typename != "" {
+        queue: <default("DropTailQueue")> like IPacketQueue {
             parameters:
                 frameCapacity = default(txQueueLimit);
                 @display("p=100,100;q=l2queue");
