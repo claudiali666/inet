@@ -154,7 +154,7 @@ module EtherMac like IEtherMac
         output upperLayerOut @labels(EtherFrame);  // to ~EtherEncap or ~IMacRelayUnit
         inout phys @labels(EtherFrame); // to physical layer or the network
     submodules:
-        queue: <default("DropTailQueue")> like IPacketQueue if typename != "" {
+        queue: <default("DropTailQueue")> like IPacketQueue {
             parameters:
                 frameCapacity = default(txQueueLimit);
                 @display("p=100,100");
