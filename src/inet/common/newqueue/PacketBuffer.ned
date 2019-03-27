@@ -23,7 +23,7 @@ simple PacketBuffer like IPacketBuffer
 {
     parameters:
         int frameCapacity = default(-1);
-        int dataCapacity = default(-1);
+        int dataCapacity @unit(b) = default(-1b);
         string displayStringTextFormat = default("%p packets\n%l");
         @display("i=block/buffer");
         @signal[packetDropped](type=inet::Packet);

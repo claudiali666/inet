@@ -27,7 +27,7 @@ void ThresholdDropper::initialize(int stage)
     MultiPacketFilterBase::initialize(stage);
     if (stage == INITSTAGE_LOCAL) {
         frameCapacity = par("frameCapacity");
-        dataCapacity = B(par("dataCapacity"));
+        dataCapacity = b(par("dataCapacity"));
     }
 }
 
@@ -35,7 +35,7 @@ bool ThresholdDropper::filterPacket(cGate *gate, Packet *packet)
 {
     if (frameCapacity >= 0 && (getNumPackets() + 1) > frameCapacity)
         return true;
-    if (dataCapacity >= b(0) && (getTotalLength() + packet->getTotalLength()) > dataCapacity)
+    if (dataCapacity >= b(-1) && (getTotalLength() + packet->getTotalLength()) > dataCapacity)
         return true;
     return false;
 }

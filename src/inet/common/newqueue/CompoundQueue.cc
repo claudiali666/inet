@@ -31,7 +31,7 @@ void CompoundQueue::initialize(int stage)
     if (stage == INITSTAGE_LOCAL) {
         displayStringTextFormat = par("displayStringTextFormat");
         frameCapacity = par("frameCapacity");
-        dataCapacity = par("dataCapacity");
+        dataCapacity = b(par("dataCapacity"));
         inputGate = gate("in");
         outputGate = gate("out");
         inputQueue = check_and_cast<IPacketConsumer *>(gate("in")->getPathEndGate()->getOwnerModule());
@@ -57,7 +57,7 @@ Packet *CompoundQueue::getPacket(int index)
 void CompoundQueue::pushPacket(Packet *packet, cGate *gate)
 {
     if ((frameCapacity != -1 && getNumPackets() >= frameCapacity) ||
-        (dataCapacity != -1 && getTotalLength() + packet->getTotalLength() > B(dataCapacity)))
+        (dataCapacity != b(-1) && getTotalLength() + packet->getTotalLength() > dataCapacity))
     {
         EV_INFO << "Dropping packet " << packet->getName() << " because the queue is full." << endl;
         PacketDropDetails details;

@@ -35,7 +35,7 @@ void PacketQueue::initialize(int stage)
         inputGate = gate("in");
         outputGate = gate("out");
         frameCapacity = par("frameCapacity");
-        dataCapacity = par("dataCapacity");
+        dataCapacity = b(par("dataCapacity"));
         enableDropping = par("enableDropping");
         displayStringTextFormat = par("displayStringTextFormat");
         // buffer
@@ -52,7 +52,7 @@ void PacketQueue::initialize(int stage)
         const char *dropperClass = par("dropperClass");
         if (*dropperClass != '\0')
             packetDropperFunction = check_and_cast<IPacketDropperFunction *>(createOne(dropperClass));
-        if ((frameCapacity != -1 || dataCapacity != -1) && enableDropping && packetDropperFunction == nullptr)
+        if ((frameCapacity != -1 || dataCapacity != b(-1)) && enableDropping && packetDropperFunction == nullptr)
             throw cRuntimeError("Packet dropper is not specified");
         updateDisplayString();
         scheduleAt(0, new cMessage("StartConsuming"));
@@ -73,7 +73,7 @@ void PacketQueue::handleMessage(cMessage *message)
 bool PacketQueue::isOverloaded()
 {
     return (frameCapacity != -1 && getNumPackets() > frameCapacity) ||
-           (dataCapacity != -1 && getTotalLength() > B(dataCapacity));
+           (dataCapacity != b(-1) && getTotalLength() > dataCapacity);
 }
 
 int PacketQueue::getNumPackets()

@@ -32,7 +32,7 @@ class INET_API PacketQueue : public PacketQueueBase, public IPacketBuffer::IList
     cGate *inputGate = nullptr;
     cGate *outputGate = nullptr;
     int frameCapacity = -1;
-    int dataCapacity = -1;
+    b dataCapacity = b(-1);
     bool enableDropping = false;
     const char *displayStringTextFormat = nullptr;
 
@@ -52,7 +52,7 @@ class INET_API PacketQueue : public PacketQueueBase, public IPacketBuffer::IList
     virtual ~PacketQueue() { delete packetDropperFunction; }
 
     virtual int getMaxNumPackets() override { return frameCapacity; }
-    virtual b getMaxTotalLength() override { return dataCapacity == -1 ? b(-1) : b(B(dataCapacity)); }
+    virtual b getMaxTotalLength() override { return dataCapacity; }
     virtual b getTotalLength() override { return b(queue.getBitLength()); }
 
     virtual bool isEmpty() override { return getNumPackets() == 0; }
